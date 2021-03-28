@@ -16,11 +16,10 @@ mongoose.Promise = require('bluebird');
 *
 Database connection
 */
-mongoose.connect('mongodb://admin:admin@ds121588.mlab.com:21588/mean-library', {
+mongoose.connect('mongodb+srv://swellworks:l0vem3d0!@buwebdev-cluster-1.nclbl.mongodb.net//mean-library', { // IMPORTANT: Not sure if this is correct
 promiseLibrary: require('bluebird')
 }).then ( () => console.log('connection successful'))
 .catch( (err) => console.error(err));
-
 
 
 // view engine setup
