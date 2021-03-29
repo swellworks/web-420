@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./api-gateway/routes/index');
 // var usersRouter = require('./routes/users');
 
 var app = express();
@@ -50,5 +50,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// api-catalog routes
+var apiCatalog = require(‘./routes/api-catalog’);
+
+// Register the API Catalog’s routes
+App.use(‘/api’, apiCatalog);
 
 module.exports = app;
