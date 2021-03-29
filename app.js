@@ -52,9 +52,10 @@ app.use(function(err, req, res, next) {
 });
 
 // api-catalog routes
-var apiCatalog = require(‘./routes/api-catalog’);
+var apiCatalog = require('./routes/api-catalog');
 
 // Register the API Catalog’s routes
-App.use(‘/api’, apiCatalog);
+App.use('/api', apiCatalog);
 
 module.exports = app;
+
