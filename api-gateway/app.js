@@ -7,26 +7,28 @@
 ;===========================================
 */
 
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+// Configure the MongoDB connection
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
-var indexRouter = require('./routes/index');
+var index = require('./routes/index');
+var apiCatalog = require('./routes/api-catalog');
 // var usersRouter = require('./routes/users');
 
 var app = express();
 
-// Configure the MongoDB connection
-var mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
 /**
 *
 Database connection
 */
 mongoose.connect('mongodb+srv://swellworks:l0vem3d0!@buwebdev-cluster-1.nclbl.mongodb.net//mean-library', { // IMPORTANT: Not sure if this is correct
-promiseLibrary: require('bluebird')
+  promiseLibrary: require('bluebird')
 }).then ( () => console.log('connection successful'))
 .catch( (err) => console.error(err));
 
@@ -35,18 +37,23 @@ promiseLibrary: require('bluebird')
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', index);
+app.use('/api', apiCatalog);
 // app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handler
@@ -59,12 +66,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// api-catalog routes
-var apiCatalog = require('./routes/api-catalog');
-
-// Register the API Catalog’s routes
-App.use('/api', apiCatalog);
 
 module.exports = app;
 
