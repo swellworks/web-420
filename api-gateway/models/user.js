@@ -2,29 +2,36 @@
 ;============================================
 ; Title:  user.js
 ; Author: Perry Fulfs
-; Date:   28 March 2021
-; Description: api-gateway
+; Date:   11 April 2021
+; Description: api-gateway / user
 ;===========================================
 */
 
 /**
- Fields username, password, and email
- */
+Fields username, password, and email
+*/
 
- var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 
- var userSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
      username: String,
      password: String,
      email: String
- });
+});
  
- module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
  
- 
- /**
-  Database queries
-  */
+/**
+Database queries
+*/
 
+// user.save is used to add a new user in our database
+module.exports.add = (user, callback) => {
+    user.save(callback);
+}
 
+module.exports.getById = (id, callback) => {
+    var query = {_id: id};
+    User.findById(query, callback);
+}
