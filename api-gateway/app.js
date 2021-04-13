@@ -9,7 +9,6 @@
 
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -27,7 +26,7 @@ var app = express();
 *
 Database connection
 */
-mongoose.connect('mongodb+srv://swellworks:l0vem3d0!@buwebdev-cluster-1.nclbl.mongodb.net//mean-library', { // IMPORTANT: Not sure if this is correct
+mongoose.connect('mongodb+srv://admin:admin@buwebdev-cluster-1.nclbl.mongodb.net/api-gateway?retryWrites=true&w=majority', { // IMPORTANT: Not sure if this is correct
   promiseLibrary: require('bluebird')
 }).then ( () => console.log('connection successful'))
 .catch( (err) => console.error(err));
