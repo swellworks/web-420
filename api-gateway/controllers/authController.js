@@ -62,7 +62,7 @@ exports.user_login = function(req, res) {
 
     User.getOne(req.body.email, function(err, user) {
         if (err) return res.status(500).send('Error on server.');
-        if (!user) return res.status(404).send('No user found');
+        if (!user) return res.status(404).send('No user found.');
 
         var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
@@ -73,9 +73,7 @@ exports.user_login = function(req, res) {
         });
 
         res.status(200).send ( {auth: true, token: token });
-
     })
-
 };
 
 // handle user logout requests
