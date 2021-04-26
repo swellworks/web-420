@@ -57,10 +57,10 @@ exports.user_token = function(req, res) {
     });
 };
 
-// Add a new function to the authController to handle user login requests
+// new function to the authController to handle user login requests
 exports.user_login = function(req, res) {
 
-    User.getOne(req.body.email, function(err) {
+    User.getOne(req.body.email, function(err, user) {
         if (err) return res.status(500).send('Error on server.');
         if (!user) return res.status(404).send('No user found');
 
@@ -76,6 +76,11 @@ exports.user_login = function(req, res) {
 
     })
 
+};
+
+// handle user logout requests
+exports.user_logout = function(req, res) {
+    res.status(200).send({ auth: false, token: null});
 };
 
 

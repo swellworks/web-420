@@ -24,5 +24,7 @@ router.post('/auth/login', auth_controller.user_login);
 exports.user_logout = function(req, res) {
     res.status(200).send({ auth: false, token: null});
 };
+// routes to allow user login requests
+router.post('/auth/login', auth_controller.user_login);
 // routes to allow user logout requests
 router.get('/auth/logout', auth_controller.user_logout);
