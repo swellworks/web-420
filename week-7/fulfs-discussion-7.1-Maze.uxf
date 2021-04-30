@@ -1,0 +1,10 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>164</x><y>130</y><w>100</w><h>30</h></coordinates><panel_attributes>Maze Collection</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>354</x><y>130</y><w>100</w><h>30</h></coordinates><panel_attributes>Maze</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>64</x><y>130</y><w>120</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+GET</panel_attributes><additional_attributes>100;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>261</x><y>130</y><w>110</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+GET
+Maze</panel_attributes><additional_attributes>90;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>391</x><y>150</y><w>80</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-
+GET start</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>351</x><y>250</y><w>100</w><h>30</h></coordinates><panel_attributes>Cell</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>250</y><w>110</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+GET
+Exit</panel_attributes><additional_attributes>90;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>290</x><y>260</y><w>130</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;-
+GET north, south,
+east, west, current</panel_attributes><additional_attributes>60;10;10;10;10;120;110;120</additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>270</y><w>30</w><h>130</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element></diagram>
