@@ -2,8 +2,8 @@
 ;============================================
 ; Title:  app.js
 ; Author: Perry Fulfs
-; Date:   11 April 2021
-; Description: app
+; Date:   09 May 2021
+; Description: Assignment 8.4 – API Gateway Part V
 ;===========================================
 */
 
