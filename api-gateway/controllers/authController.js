@@ -35,27 +35,38 @@ exports.user_register = function(req, res) {
     });
 };
 
-
 // Verify token on GET
 exports.user_token = function(req, res) {
+    User.getById(req.userId, function(err, user) {
+        if (err) return res.status(500).send('There was a problem finding the user.');
 
-    var token = req.headers['x-access-token'];
+        if (!user) return res.status(404).send('No user found.');
 
-    if (!token) return res.status(401).send({ auth: false, message: 'No token provided'});
-
-    jwt.verify(token, config.web.secret, function(err, decoded) {
-        if (err) return res.status(500).send({auth: false, message: 'Failed to authenticate token.'});
-
-        User.getById(decoded.id, function(err, user) {
-            if (err) return res.status(500).send('There was a problem finding the user.');
-
-            if (!user) return res.status(404).send('No user found.');
-
-            res.status(200).send(user);
-        });
-
+        res.status(200).send(user);
     });
 };
+
+
+// Verify token on GET
+// exports.user_token = function(req, res) {
+
+//     var token = req.headers['x-access-token'];
+
+//     if (!token) return res.status(401).send({ auth: false, message: 'No token provided'});
+
+//     jwt.verify(token, config.web.secret, function(err, decoded) {
+//         if (err) return res.status(500).send({auth: false, message: 'Failed to authenticate token.'});
+
+//         User.getById(decoded.id, function(err, user) {
+//             if (err) return res.status(500).send('There was a problem finding the user.');
+
+//             if (!user) return res.status(404).send('No user found.');
+
+//             res.status(200).send(user);
+//         });
+
+//     });
+// };
 
 // new function to the authController to handle user login requests
 exports.user_login = function(req, res) {
@@ -75,6 +86,8 @@ exports.user_login = function(req, res) {
         res.status(200).send ( {auth: true, token: token });
     })
 };
+
+
 
 // handle user logout requests
 exports.user_logout = function(req, res) {

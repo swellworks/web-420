@@ -11,12 +11,14 @@
 * API Routes
 */
 var express = require('express');
+// add require statement
+var checkToken = require('../check-token'); 
 var router = express.Router();
 var auth_controller = require('../controllers/authController');
 // POST request for registering a user
 router.post('/auth/register', auth_controller.user_register);
 // GET request for verifying user tokens
-router.get('/auth/token', auth_controller.user_token);
+router.get('/auth/token', checkToken, auth_controller.user_token);
 module.exports = router;
 // routes to allow user login requests
 router.post('/auth/login', auth_controller.user_login);
@@ -28,3 +30,4 @@ exports.user_logout = function(req, res) {
 router.post('/auth/login', auth_controller.user_login);
 // routes to allow user logout requests
 router.get('/auth/logout', auth_controller.user_logout);
+
